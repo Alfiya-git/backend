@@ -1,9 +1,9 @@
 version: 0.2
 
 phases:
-  install:
-    runtime-versions:
-      nodejs: 14
+  # install:
+  #   runtime-versions:
+  #     nodejs: 14
   pre_build:
     commands:
       - echo Authenticating with Amazon ECR...
