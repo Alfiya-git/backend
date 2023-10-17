@@ -1,0 +1,23 @@
+[
+  {
+    "name": "hadiya",
+    "image": "hadiya_products_api1",
+    "cpu": 512,
+    "memory": 1024,
+    "essential": true,
+    "portMappings": [
+      {
+        "containerPort": 80,
+        "hostPort": 80
+      }
+    ],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "options": {
+        "awslogs-group": "/ecs/express",
+        "awslogs-region": "eu-west-",
+        "awslogs-stream-prefix": "ecs"
+      }
+    }
+  }
+]
