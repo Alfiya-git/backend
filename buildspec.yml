@@ -7,32 +7,20 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      # - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 318988877498.dkr.ecr.eu-west-1.amazonaws.com
   build:
     commands:
       - echo Build started on `date`
-      # - docker build -t $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION .
       - docker build -t hadiya-backend-alfiya .
-      # - docker tag $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION $REPOSITORY_URI:latest
       - docker tag hadiya-backend-alfiya:latest 318988877498.dkr.ecr.eu-west-1.amazonaws.com/hadiya-backend-alfiya:latest
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image to Amazon ECR...
-      # - docker push $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION
-      # - docker push $REPOSITORY_URI:latest
       - docker push 318988877498.dkr.ecr.eu-west-1.amazonaws.com/hadiya-backend-alfiya:latest
-
-# artifacts:
-#   files: ./ # You can specify any files you want to include in the build artifacts
-
-# cache:
-#   paths:
-#     - node_modules/ # You can specify any other paths you want to cache
 
 env:
   variables:
-    AWS_DEFAULT_REGION: <eu-west-1>
-    AWS_ACCOUNT_ID: <318988877498>
-    REPOSITORY_URI: <318988877498.dkr.ecr.eu-west-1.amazonaws.com/hadiya-backend-alfiya>
+    AWS_DEFAULT_REGION: eu-west-1
+    AWS_ACCOUNT_ID: 318988877498
+    REPOSITORY_URI: 318988877498.dkr.ecr.eu-west-1.amazonaws.com/hadiya-backend-alfiya
